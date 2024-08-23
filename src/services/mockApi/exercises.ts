@@ -8,6 +8,7 @@ export default function getExerciseById(id: number): Promise<IExercise | null> {
                 {
                     id: 1,
                     title: "Check In",
+                    subTitle: "Today's Question",
                     sessionInfo: "5-10 mins | 2-15 team members",
                     description: "You will be given a question and then go around the room until everyone had a chance to answer it. We will show you a timer so you can make sure to keep the conversation moving. Once everyone (including yourself) has answered the question, just exit the exercise by pressing the back button in the top left.",
                     type: "questionsWithTimer",
