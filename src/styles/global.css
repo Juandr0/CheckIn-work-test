@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.xlTitle {
+    @apply text-4xl font-extrabold font-inter;
+}
+
+.title {
+    @apply text-lg font-semibold font-inter text-cardForeground;
+}
+
+.titleDescription {
+    @apply font-inter font-regular text-sm text-mutedForeground m-0;
+}
+
+.body {
+    @apply text-base font-normal font-inter text-cardForeground;
+}
+
+.button {
+    @apply text-base font-medium font-inter;
+}
