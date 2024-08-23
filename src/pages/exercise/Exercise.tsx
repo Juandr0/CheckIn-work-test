@@ -6,7 +6,7 @@ import { IExercise } from '../../types/IExercise';
 import { useParams } from 'react-router-dom';
 import getExerciseById from '../../services/mockApi/exercises';
 import QuestionsWithTimer from '../../components/questionsWithTimer/QuestionsWithTimer';
-import Button, { ButtonColor } from '../../components/Button/Button';
+import Button, { ButtonColor } from '../../components/button/Button';
 
 
 // Renders exercise details & displays the excercise when 'start' is clicked
