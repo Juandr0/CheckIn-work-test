@@ -15,6 +15,7 @@ function Exercise() {
     const [exercise, setExercise] = useState<IExercise | null>(null);
     const [loading, setLoading] = useState(true);
     const [didStart, setDidStart] = useState(false);
+    const [headerTitle, setHeaderTitle] = useState('');
 
     //API-Call imitation
     useEffect(() => {
@@ -23,6 +24,7 @@ function Exercise() {
                 const exerciseId = id ? parseInt(id, 10) : 1;
                 const fetchedExercise = await getExerciseById(exerciseId);
                 setExercise(fetchedExercise);
+                setHeaderTitle(fetchedExercise?.title ?? "Unknown title");
             } catch (error) {
                 console.error('Failed to fetch exercise', error);
             } finally {
@@ -45,13 +47,16 @@ function Exercise() {
                 </div>
             } />
             <div className="sm: flex flex-col mt-[24px] mx-[16px] max-w-3xl md:mx-auto">
-                <ExerciseHeader title={exercise.title} />
+                <ExerciseHeader title={headerTitle} />
                 {!didStart ? (
                     <ExerciseIntro
                         sessionInfo={exercise.sessionInfo}
                         description={exercise.description}
-                        onStart={() => setDidStart(true)}
-                    />
+                        onStart={() => {
+                            setDidStart(true)
+                            setHeaderTitle(exercise.subTitle ?? exercise.title);
+                        }
+                        } />
                 ) : (
                     <ExerciseContent exercise={exercise} />
                 )}

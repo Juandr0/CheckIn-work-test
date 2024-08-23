@@ -1,6 +1,7 @@
 export interface IExercise {
     id: number;
     title: string;
+    subTitle?: string;
     sessionInfo: string;
     description: string;
     questions?: IQuestions;
