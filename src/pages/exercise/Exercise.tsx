@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import Play from '../../assets/Play.svg';
 import Rocket from '../../assets/Rocket.svg';
-import Button, { ButtonColor } from '../../components/Button/Button';
+import Button, { ButtonColor } from '../../components/button/Button';
 import Header from '../../components/header/Header';
 import { IExercise } from '../../types/IExercise';
 import { useParams } from 'react-router-dom';
 import getExerciseById from '../../services/mockApi/exercises';
-import Timer from '../timer/Timer';
+import QuestionsWithTimer from '../questionsWithTimer/QuestionsWithTimer';
 
 
 // Renders exercise details & displays the corresponding excercise type
@@ -92,9 +92,7 @@ function ExerciseContent({ exercise }: { exercise: IExercise }) {
     switch (exercise.type) {
         case 'questionsWithTimer':
             return (
-                <div className='flex-1 flex items-center justify-center'>
-                    <Timer exercise={exercise} />
-                </div>
+                <QuestionsWithTimer exercise={exercise} />
             );
         default:
             return <div>Exercise not implemented yet</div>;

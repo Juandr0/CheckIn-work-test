@@ -1,29 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
-import Button, { ButtonColor } from '../../components/Button/Button';
+import Button, { ButtonColor } from '../button/Button';
 import PlayIcon from '../../assets/Play.svg';
 import PauseIcon from '../../assets/Pause.svg';
 import ResetIcon from '../../assets/Restart.svg';
-import ReloadIcon from '../../assets/Reload.svg';
-import { IExercise } from '../../types/IExercise';
-import getRandomIndex from '../../services/getRandomIndex/getRandomIndex';
 import React from "react";
 
-interface TimerProps {
-    exercise: IExercise;
+interface ITimer {
+    countdownTime: number
 }
 
-const Timer: React.FC<TimerProps> = ({ exercise }) => {
-    const countdownTime = exercise.questions?.secondsPerQuestion ?? 60;
+const Timer: React.FC<ITimer> = ({ countdownTime }) => {
     const [isRunning, setIsRunning] = useState(false);
     const [remainingTime, setRemainingTime] = useState(countdownTime);
     const intervalRef = useRef<number | null>(null);
     const percentage = (remainingTime / countdownTime) * 100;
     const inversePercentage = 100 - percentage;
-    const [question, setQuestion] = useState(() =>
-        exercise?.questions?.questions.length
-            ? getRandomIndex(exercise.questions.questions)
-            : ''
-    );
+
 
     useEffect(() => {
         if (isRunning) {
@@ -60,23 +52,10 @@ const Timer: React.FC<TimerProps> = ({ exercise }) => {
         setRemainingTime(countdownTime);
     };
 
-    const displayNewQuestion = () => {
-        if (exercise?.questions?.questions.length) {
-            setQuestion(getRandomIndex(exercise.questions.questions));
-        }
-        resetTimer();
-    };
-
     return (
 
         <div className="w-full pt-10">
-            <div className='flex justify-between items-start'>
-                <span>{question}</span>
-                <button onClick={displayNewQuestion}>
-                    <img src={ReloadIcon} alt="Refresh question" className='h-4 w-4 mt-1.5' />
-                </button>
-            </div>
-            <div className="text-center xlTitle mt-36">
+            <div className="text-center xlTitle">
                 {remainingTime}s
             </div>
             <div
