@@ -3,7 +3,7 @@ import PlayIcon from '../../assets/Play.svg';
 import PauseIcon from '../../assets/Pause.svg';
 import ResetIcon from '../../assets/Restart.svg';
 import React from "react";
-import Button, { ButtonColor } from '../button/Button';
+import Button, { ButtonColor } from '../Button/Button';
 
 interface ITimer {
     countdownTime: number
