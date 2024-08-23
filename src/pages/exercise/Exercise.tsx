@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import Play from '../../assets/Play.svg';
 import Rocket from '../../assets/Rocket.svg';
-import Button, { ButtonColor } from '../../components/button/Button';
 import Header from '../../components/header/Header';
 import { IExercise } from '../../types/IExercise';
 import { useParams } from 'react-router-dom';
 import getExerciseById from '../../services/mockApi/exercises';
 import QuestionsWithTimer from '../../components/questionsWithTimer/QuestionsWithTimer';
+import Button, { ButtonColor } from '../../components/button/Button';
 
 
-// Renders exercise details & displays the corresponding excercise type
+// Renders exercise details & displays the excercise when 'start' is clicked
 function Exercise() {
     const { id } = useParams<{ id?: string }>();
     const [exercise, setExercise] = useState<IExercise | null>(null);
