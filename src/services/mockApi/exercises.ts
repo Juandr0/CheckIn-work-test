@@ -48,13 +48,12 @@ export default function getExerciseById(id: number): Promise<IExercise | null> {
                             "What's the most interesting thing you've learned recently?"
                         ]
                     }
-
                 },
                 {
                     id: 3,
-                    title: "Exercise not implemented type test",
-                    sessionInfo: "20-30 mins | 3-10 team members",
-                    description: "Exercise not implemented on button click",
+                    title: "Error",
+                    sessionInfo: "Exercise not implemented on button click",
+                    description: "Error",
                     type: "",
                 }
             ];
