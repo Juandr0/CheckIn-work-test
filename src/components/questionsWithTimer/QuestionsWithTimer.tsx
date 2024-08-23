@@ -22,19 +22,18 @@ const QuestionsWithTimer: React.FC<QuestionsWithTimerProps> = ({ exercise }) => 
     };
 
     return (
-        <div>
-            <div className='flex items-start justify-between mb-36'>
+        <div className='flex flex-col flex-1 justify-between w-min-full'>
+            <div className='flex items-center justify-between mb-4'>
                 <span>{question}</span>
-                <button onClick={displayNewQuestion}>
-                    <img src={ReloadIcon} alt="Refresh question" className='h-4 w-4 mt-1.5' />
+                <button onClick={displayNewQuestion} className='p-1'>
+                    <img src={ReloadIcon} alt="Refresh question" className='h-6 w-6' />
                 </button>
             </div>
-            <Timer countdownTime={exercise.questions?.secondsPerQuestion ?? 60} />
+            <div className='pb-4'>
+                <Timer countdownTime={exercise.questions?.secondsPerQuestion ?? 60} />
+            </div>
         </div>
-
-
-    )
+    );
 }
 
-export default QuestionsWithTimer
-
+export default QuestionsWithTimer;
