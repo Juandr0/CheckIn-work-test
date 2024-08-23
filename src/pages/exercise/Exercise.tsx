@@ -1,3 +1,4 @@
+// Exercise Component
 import { useEffect, useState } from 'react';
 import Play from '../../assets/Play.svg';
 import Rocket from '../../assets/Rocket.svg';
@@ -8,16 +9,13 @@ import getExerciseById from '../../services/mockApi/exercises';
 import QuestionsWithTimer from '../../components/questionsWithTimer/QuestionsWithTimer';
 import Button, { ButtonColor } from '../../components/Button/Button';
 
-
-// Renders exercise details & displays the excercise when 'start' is clicked
-function Exercise() {
+export default function Exercise() {
     const { id } = useParams<{ id?: string }>();
     const [exercise, setExercise] = useState<IExercise | null>(null);
     const [loading, setLoading] = useState(true);
     const [didStart, setDidStart] = useState(false);
     const [headerTitle, setHeaderTitle] = useState('');
 
-    //API-Call imitation
     useEffect(() => {
         const fetchExercise = async () => {
             try {
@@ -39,69 +37,58 @@ function Exercise() {
     if (!exercise) return <div>Exercise not found</div>;
 
     return (
-        <>
+        <div className="flex flex-col min-h-screen min-w-full md:mx-auto">
             <Header title={
-                <div className='flex items-center'>
-                    <img src={Rocket} className='w-[24px] h-[24px] mr-2' alt="Rocket icon" />
-                    <h1 className='title'>{exercise.title}</h1>
+                <div className="flex items-center">
+                    <img src={Rocket} className="w-[24px] h-[24px] mr-2" alt="Rocket icon" />
+                    <h1 className="text-black text-lg font-semibold">{exercise.title}</h1>
                 </div>
             } />
-            <div className="sm: flex flex-col mt-[24px] mx-[16px] max-w-3xl md:mx-auto">
-                <ExerciseHeader title={headerTitle} />
-                {!didStart ? (
-                    <ExerciseIntro
-                        sessionInfo={exercise.sessionInfo}
-                        description={exercise.description}
-                        onStart={() => {
-                            setDidStart(true)
-                            setHeaderTitle(exercise.subTitle ?? exercise.title);
-                        }
-                        } />
-                ) : (
-                    <ExerciseContent exercise={exercise} />
-                )}
+            <div className="flex justify-center px-4 mt-2 flex-1">
+                <div className="flex flex-col flex-1 max-w-3xl">
+                    <ExerciseHeader title={headerTitle} />
+                    {!didStart ? (
+                        <ExerciseIntro
+                            sessionInfo={exercise.sessionInfo}
+                            description={exercise.description}
+                            onStart={() => {
+                                setDidStart(true);
+                                setHeaderTitle(exercise.subTitle ?? exercise.title);
+                            }}
+                        />
+                    ) : (
+                        <QuestionsWithTimer exercise={exercise} />
+                    )}
+                </div>
             </div>
-        </>
+        </div>
     );
 }
 
 function ExerciseHeader({ title }: { title: string }) {
     return (
-        <div className='flex items-center'>
-            <img src={Rocket} className='w-[24px] h-[24px] mr-2' alt="Rocket icon" />
-            <h1 className='title'>{title}</h1>
+        <div className="flex items-center mb-4">
+            <img src={Rocket} className="w-[24px] h-[24px] mr-2" alt="Rocket icon" />
+            <h1 className="text-black text-xl font-semibold">{title}</h1>
         </div>
     );
 }
 
-// Renders the introduction content and the start button
 function ExerciseIntro({ sessionInfo, description, onStart }: { sessionInfo: string; description: string; onStart: () => void; }) {
     return (
-        <>
-            <h2 className='titleDescription mt-[6px]'>{sessionInfo}</h2>
-            <p className='body mt-8'>{description}</p>
-            <div className='mt-36'>
+        <div className="flex flex-col flex-1 justify-between">
+            <div>
+                <h2 className="text-lg font-semibold">{sessionInfo}</h2>
+                <p className="mt-4 text-gray-700">{description}</p>
+            </div>
+            <div className='pb-4'>
                 <Button
-                    title='Start'
+                    title="Start"
                     icon={Play}
                     backgroundColor={ButtonColor.Black}
                     onClick={onStart}
                 />
             </div>
-        </>
+        </div>
     );
 }
-
-// Renders the main exercise content or timer based on exercise type
-function ExerciseContent({ exercise }: { exercise: IExercise }) {
-    switch (exercise.type) {
-        case 'questionsWithTimer':
-            return (
-                <QuestionsWithTimer exercise={exercise} />
-            );
-        default:
-            return <div>Exercise not implemented yet</div>;
-    }
-}
-
-export default Exercise;
