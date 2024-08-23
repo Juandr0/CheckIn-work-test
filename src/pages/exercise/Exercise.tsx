@@ -6,7 +6,7 @@ import Header from '../../components/header/Header';
 import { IExercise } from '../../types/IExercise';
 import { useParams } from 'react-router-dom';
 import getExerciseById from '../../services/mockApi/exercises';
-import QuestionsWithTimer from '../questionsWithTimer/QuestionsWithTimer';
+import QuestionsWithTimer from '../../components/questionsWithTimer/QuestionsWithTimer';
 
 
 // Renders exercise details & displays the corresponding excercise type

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReloadIcon from '../../assets/Reload.svg';
 import getRandomIndex from '../../services/getRandomIndex/getRandomIndex';
 import { IExercise } from '../../types/IExercise';
-import Timer from '../../components/timer/Timer';
+import Timer from '../timer/Timer';
 
 interface QuestionsWithTimerProps {
     exercise: IExercise;
@@ -12,7 +12,7 @@ const QuestionsWithTimer: React.FC<QuestionsWithTimerProps> = ({ exercise }) => 
     const [question, setQuestion] = useState(() =>
         exercise?.questions?.questions.length
             ? getRandomIndex(exercise.questions.questions)
-            : ''
+            : 'No question found'
     );
 
     const displayNewQuestion = () => {
