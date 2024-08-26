@@ -1,4 +1,3 @@
-// Exercise Component
 import { useEffect, useState } from 'react';
 import Play from '../../assets/Play.svg';
 import Rocket from '../../assets/Rocket.svg';
@@ -41,7 +40,7 @@ export default function Exercise() {
             <Header title={
                 <div className="flex items-center">
                     <img src={Rocket} className="w-[24px] h-[24px] mr-2" alt="Rocket icon" />
-                    <h1 className="text-black text-lg font-semibold">{exercise.title}</h1>
+                    <h1 className="title">{exercise.title}</h1>
                 </div>
             } />
             <div className="flex justify-center px-4 mt-2 flex-1">
@@ -67,9 +66,9 @@ export default function Exercise() {
 
 function ExerciseHeader({ title }: { title: string }) {
     return (
-        <div className="flex items-center mb-4">
+        <div className="flex items-center">
             <img src={Rocket} className="w-[24px] h-[24px] mr-2" alt="Rocket icon" />
-            <h1 className="text-black text-xl font-semibold">{title}</h1>
+            <h1 className="title">{title}</h1>
         </div>
     );
 }
@@ -78,8 +77,8 @@ function ExerciseIntro({ sessionInfo, description, onStart }: { sessionInfo: str
     return (
         <div className="flex flex-col flex-1 justify-between">
             <div>
-                <h2 className="text-lg font-semibold">{sessionInfo}</h2>
-                <p className="mt-4 text-gray-700">{description}</p>
+                <h2 className="titleDescription">{sessionInfo}</h2>
+                <p className="mt-6 body">{description}</p>
             </div>
             <div className='pb-4'>
                 <Button
