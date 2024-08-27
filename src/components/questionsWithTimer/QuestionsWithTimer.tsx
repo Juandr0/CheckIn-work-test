@@ -22,8 +22,8 @@ const QuestionsWithTimer: React.FC<QuestionsWithTimerProps> = ({ exercise }) => 
     };
 
     return (
-        <div className='flex flex-col flex-1 justify-between w-min-full'>
-            <div className='flex items-center justify-between mt-4'>
+        <div className='flex flex-col flex-1 justify-between w-min-full mt-[32px]'>
+            <div className='flex items-center justify-between'>
                 <span className='text-xl font-inter'>{question}</span>
                 <button onClick={displayNewQuestion}>
                     <img src={ReloadIcon} alt="Refresh question" className='h-6 w-6' />

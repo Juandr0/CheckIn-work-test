@@ -43,7 +43,7 @@ export default function Exercise() {
                     <h1 className="title">{exercise.title}</h1>
                 </div>
             } />
-            <div className="flex justify-center px-4 mt-2 flex-1">
+            <div className="flex justify-center px-4 mt-[24px] flex-1">
                 <div className="flex flex-col flex-1 max-w-3xl">
                     <ExerciseHeader title={headerTitle} />
                     {!didStart ? (
@@ -78,7 +78,7 @@ function ExerciseIntro({ sessionInfo, description, onStart }: { sessionInfo: str
         <div className="flex flex-col flex-1 justify-between">
             <div>
                 <h2 className="titleDescription">{sessionInfo}</h2>
-                <p className="mt-6 body">{description}</p>
+                <p className="body mt-[32px]">{description}</p>
             </div>
             <div className='pb-4'>
                 <Button
